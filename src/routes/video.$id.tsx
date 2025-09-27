@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import Player from "@/components/Player";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/video/$id")({
@@ -7,21 +7,13 @@ export const Route = createFileRoute("/video/$id")({
 
 function RouteComponent() {
   const { id } = Route.useParams();
-  const url = "https://www.youtube.com/embed/" + id;
+  const url = "https://www.youtube.com/watch?v=" + id;
+  const timestamp = 2318;
+  const playbackRate = 1.25;
   return (
     <div className="h-[calc(100svh-40px)] flex flex-col">
       <div className="relative grow">
-        <iframe
-          width="100%"
-          height="100%"
-          className="absolute inset-0"
-          src={url}
-        ></iframe>
-      </div>
-      <div className="grid place-content-center px-4 py-2">
-        <Button className="bg-amber-300 text-black hover:text-white">
-          Play
-        </Button>
+        <Player src={url} start={timestamp} playbackRate={playbackRate} />
       </div>
     </div>
   );
